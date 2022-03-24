@@ -1,7 +1,7 @@
 {
     "api_key" : "5281465590:AAHUkC59OBKBRCZhYKa3EGOCxcwdjQMvHIU",
     "admins" : ["1803752079"],
-    "intro" : "\nQuiz bot  \n\uD83D\uDD25 Prize : 100 Bitcoin\n\uD83D\uDD25 Value: 10 Trillion dollars\n\uD83D\uDC65 Referral : 100 Bitcoins more",
+    "intro" : "\nWelcome Screen : \n\nHi I am prediction bot for the activity. \nIn this activity you have to predict the price of Bitcoin at given date and time. \nRewards : 5 winners will receive BTC worth INR 150",
     "botname" :"bitcoin_prediction_bot",
     "signup" : 100,
     "ref" : 100,

@@ -17,30 +17,6 @@ admin_key = [['Users','Get List']]
 webhook_url = 'Your Webook'
 PORT = int(os.environ.get('PORT','8443'))
 
-def verification():
-    random_number = randint(1, 7)
-    if random_number == 1:
-        captcha1 = "https://i.postimg.cc/TwjQ9mfd/2bg48.png"
-        return captcha1
-    elif random_number == 2:
-        captcha2 = "https://i.postimg.cc/wM62bvjh/2fxgd.png"
-        return captcha2
-    elif random_number == 3:
-        captcha3 = "https://i.postimg.cc/hvpsFBXN/5n728.png"
-        return captcha3
-    elif random_number == 4:
-        captcha4 = "https://i.postimg.cc/7PVmJgKX/ec6pm.png"
-        return captcha4
-    elif random_number == 5:
-        captcha5 = "https://i.postimg.cc/Pr5KWPcH/m457d.png"
-        return captcha5
-    elif random_number == 6:
-        captcha6 = "https://i.postimg.cc/hPZspKWd/w4x2m.png"
-        return captcha6
-    elif random_number == 7:
-        captcha7 = "https://i.postimg.cc/52H3rDbk/yew6p.png"
-        return captcha7
-
 def start(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.id)
@@ -59,12 +35,11 @@ def start(update, context):
                 data['ref'][user] = 0
             data['total'] += 1
             data['id'][user] = data['total']
-            data['process'][user] = "verify"
+            data['process'][user] = "1st question"
             json.dump(data,open('users.json','w'))
             msg = config['intro']
             update.message.reply_text(msg)
-            update.message.reply_text('''\n↪️  Step-by-step guide:\n\nPredict the price of bitcoin correctly to win 10BTCs. \n\n**Complete the captcha to get started👇🏻**''')
-            update.message.reply_photo(verification())
+            update.message.reply_text('''\nStep by Step Guide : \n\nPredict the price of Bitcoin in INR at the given date and time. \n\nThe closest five predictions will win BTC worth INR 150\n\nEnter your Prediction and press send\n\n**What will be the price of bitcoin on 24th of march, 2022?👇🏻**''')
         else:
             welcome_msg = "Already done!"
             reply_markup = ReplyKeyboardMarkup(dash_key,resize_keyboard=True)
@@ -77,40 +52,7 @@ def extra(update, context):
     if update.message.chat.type == 'private':
         user = str(update.message.chat.id)
 
-        if data["process"][user] == 'verify':
-            msg = '''What will be the price of bitcoin on 16th of march, 2022?'''
-            text = update.message.text.lower()
-            if text == '2bg48':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            elif text == '2fxgd':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            elif text == '5n728':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            elif text == 'ec6pm':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            elif text == 'm457d':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            elif text == 'w4x2m':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            elif text == 'yew6p':
-                # reply_markup = ReplyKeyboardMarkup(option_key, resize_keyboard=True)
-                update.message.reply_text(msg)
-                data['process'][user] = '1st question'
-            else:
-                update.message.reply_text("err, try again")
-        elif data["process"][user] == '1st question':
+        if data["process"][user] == '1st question':
             prediction = update.message.text
             data['wallet_address'][user] = prediction
             msg = "Thank you"
